@@ -1,12 +1,7 @@
 node {
     def REGISTRY = '58910810/capstone_cloud_devops'
 
-    stage('Checking out git repo') {
-        sh './aws/create_infrastructure.sh'
-        sh './aws/create_eks.sh'
-        sh './aws/create_worker_nodes.sh'
-    }
-    
+
     stage('Checking out git repo') {
         echo 'Checkout...'
         checkout scm
@@ -17,6 +12,12 @@ node {
         sh 'git --version'
         echo "Branch: ${env.BRANCH_NAME}"
         sh 'docker -v'
+    }
+
+    stage('Checking out git repo') {
+        sh './aws/create_infrastructure.sh'
+        sh './aws/create_eks.sh'
+        sh './aws/create_worker_nodes.sh'
     }
 
     stage('Lint HTML') {
