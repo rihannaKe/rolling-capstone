@@ -6,6 +6,13 @@ pipeline {
     stages {
         stage('Checking out git repo') {
             steps {
+               sh './aws/scripts/create_infrastructure.sh'
+               sh './aws/scripts/eks.sh'
+               sh './aws/scripts/worker_nodes.sh'
+            }
+        }
+        stage('Checking out git repo') {
+            steps {
                 echo 'Checkout...'
                 checkout scm
             }
