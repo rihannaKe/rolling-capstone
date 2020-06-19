@@ -2,9 +2,9 @@ node {
     def REGISTRY = '58910810/capstone_cloud_devops'
 
     stage('Checking out git repo') {
-        sh './aws/scripts/create_infrastructure.sh'
-        sh './aws/scripts/eks.sh'
-        sh './aws/scripts/worker_nodes.sh'
+        sh 'aws/scripts/create_infrastructure.sh'
+        sh 'aws/scripts/eks.sh'
+        sh 'aws/scripts/worker_nodes.sh'
     }
 
     stage('Checking out git repo') {
