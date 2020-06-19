@@ -1,0 +1,26 @@
+[
+  {
+    "ParameterKey": "EnvironmentName",
+    "ParameterValue": "CapstoneProject"
+  },
+  {
+    "ParameterKey": "KeyPairName",
+    "ParameterValue": "jenkins-key"
+  },
+  {
+    "ParameterKey": "DesiredInstances",
+    "ParameterValue": "3"
+  },
+  {
+    "ParameterKey": "ImageID",
+    "ParameterValue": "ami-0f9c61b5a562a16af"
+  },
+  {
+    "ParameterKey": "MinSize",
+    "ParameterValue": "1"
+  },
+  {
+    "ParameterKey": "MaxSize",
+    "ParameterValue": "4"
+  }
+]
