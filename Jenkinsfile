@@ -3,9 +3,9 @@ node {
 
     stage('Checking out git repo') {
         dir ('./') {
-            sh 'aws/scripts/create_infrastructure.sh'
-            sh 'aws/scripts/eks.sh'
-            sh 'aws/scripts/worker_nodes.sh'
+            sh 'aws/create_infrastructure.sh'
+            sh 'aws/create_eks.sh'
+            sh 'aws/create_worker_nodes.sh'
         }
     }
 
