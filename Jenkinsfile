@@ -2,9 +2,9 @@ node {
     def REGISTRY = '58910810/capstone_cloud_devops'
 
     stage('run scripts') {
-      //  sh './aws/create_infrastructure.sh'
-        sh './aws/create_eks.sh'
-      //  sh './aws/create_worker_nodes.sh'
+        //  sh './aws/create_infrastructure.sh'
+        //  sh './aws/create_eks.sh'
+        sh './aws/create_worker_nodes.sh'
     }
 
     stage('Checking out git repo') {
@@ -40,21 +40,19 @@ node {
         echo 'Pushed to docker hub'
     }
 
-    stage('Deploying') {
-        steps {
-            echo 'Deploying to AWS...'
-            withAWS(credentials: 'aws', region: 'us-east-2') {
-                sh 'aws eks --region us-east-2 update-kubeconfig --name capstonecluster'
-                sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/capstonecluster'
-                sh 'kubectl set image deployments/capstone-app capstone-app=${REGISTRY}'
-                sh 'kubectl apply -f k8-deploy.yml'
-                sh 'kubectl get nodes'
-                sh 'kubectl get deployment'
-                sh 'kubectl get pod -o wide'
-                sh 'kubectl get service/capstone-app'
-            }
-        }
-    }
+    // stage('Deploying') {
+    //     echo 'Deploying to AWS...'
+    //     withAWS(credentials: 'aws', region: 'us-east-2') {
+    //         sh 'aws eks --region us-east-2 update-kubeconfig --name CapstoneEKS-FkejaApJm0ev'
+    //         sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/CapstoneEKS-FkejaApJm0ev'
+    //         sh 'kubectl set image deployments/capstone-app capstone-app=${REGISTRY}'
+    //         sh 'kubectl apply -f k8-deploy.yml'
+    //         sh 'kubectl get nodes'
+    //         sh 'kubectl get deployment'
+    //         sh 'kubectl get pod -o wide'
+    //         sh 'kubectl get service/capstone-app'
+    //     }
+    // }
 
     stage('Cleaning up') {
         echo 'Cleaning up...'
