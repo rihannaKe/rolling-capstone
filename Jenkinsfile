@@ -48,6 +48,7 @@ node {
     }
 
     stage('Deploying through kubectl') {
+         sh 'echo Deploying...'
         // sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/CapstoneEKS-FkejaApJm0ev'
         // sh 'kubectl  set image deployments/capstone-app capstone-app=${REGISTRY}'
         // sh 'kubectl  apply -f k8-deploy.yml'
