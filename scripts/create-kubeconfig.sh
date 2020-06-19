@@ -1,4 +1,4 @@
 aws eks \
---region us-est-2 \
+--region us-east-2 \
 update-kubeconfig \
 --name $1 \

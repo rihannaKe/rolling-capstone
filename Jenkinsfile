@@ -44,9 +44,9 @@ node {
     // stage('Deploying') {
     //     steps {
     //         echo 'Deploying to AWS...'
-    //         withAWS(credentials: 'aws', region: 'us-est-2') {
-    //             sh 'aws eks --region us-est-2 update-kubeconfig --name capstonecluster'
-    //             sh 'kubectl config use-context arn:aws:eks:us-est-2:576136082284:cluster/capstonecluster'
+    //         withAWS(credentials: 'aws', region: 'us-east-2') {
+    //             sh 'aws eks --region us-east-2 update-kubeconfig --name capstonecluster'
+    //             sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/capstonecluster'
     //             sh 'kubectl set image deployments/capstone-app capstone-app=${REGISTRY}'
     //             sh 'kubectl apply -f k8-deploy.yml'
     //             sh 'kubectl get nodes'
