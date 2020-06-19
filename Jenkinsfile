@@ -42,7 +42,7 @@ node {
 
     stage('Deploying') {
         echo 'Deploying to AWS...'
-        withAWS(credentials: 'aws', region: 'us-east-2') {
+        withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh 'aws eks --region us-east-2 update-kubeconfig --name CapstoneEKS-FkejaApJm0ev'
             sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/CapstoneEKS-FkejaApJm0ev'
             sh 'kubectl set image deployments/capstone-app capstone-app=${REGISTRY}'
