@@ -38,13 +38,13 @@ node {
         echo 'Deploying to AWS...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh 'aws eks --region us-east-2 update-kubeconfig --name Kapstone'
-            sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
-            sh 'kubectl  set image deployments/capstone-app capstone-app=${REGISTRY}'
-            sh 'kubectl  apply -f k8-deploy.yml'
-            sh 'kubectl  get nodes'
-            sh 'kubectl  get deployment'
-            sh 'kubectl  get pod -o wide'
-            sh 'kubectl  get service/capstone-app'
+            sh '/home/ubuntu/bin/kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
+            sh '/home/ubuntu/bin/kubectl  set image deployments/capstone-app capstone-app=${REGISTRY}'
+            sh '/home/ubuntu/bin/kubectl  apply -f k8-deploy.yml'
+            sh '/home/ubuntu/bin/kubectl  get nodes'
+            sh '/home/ubuntu/bin/kubectl  get deployment'
+            sh '/home/ubuntu/bin/kubectl  get pod -o wide'
+            sh '/home/ubuntu/bin/kubectl  get service/capstone-app'
         }
     }
 
