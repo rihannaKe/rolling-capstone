@@ -42,7 +42,7 @@ node {
     }
 
     stage('Deploying through kubectl') {
-        withKubeConfig([credentialsId: 'kubectl-user', serverUrl: 'https://api.k8s.my-company.com']) {
+        withKubeConfig([credentialsId: 'kubectl-user', serverUrl: 'https://86080478DFDAC0F68A281B83F0C98C0A.gr7.us-east-2.eks.amazonaws.com']) {
             sh 'kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
             sh 'kubectl  set image deployments/capstone-app capstone-app=${REGISTRY}'
             sh 'kubectl  apply -f k8-deploy.yml'
