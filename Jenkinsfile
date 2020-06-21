@@ -39,17 +39,11 @@ node {
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh 'aws eks --region us-east-2 update-kubeconfig --name Kapstone'
             sh '/home/ubuntu/bin/kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
-        }
-    }
-
-    stage('Set image') {
-        echo 'Deploying to AWS 2...'
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
             sh '/home/ubuntu/bin/kubectl set image deployments/capstone-app capstone-app=${REGISTRY}'
         }
     }
 
-    stage('Deploy  ') {
+    stage('Deploy') {
         echo 'Deploying to AWS 3...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh '/home/ubuntu/bin/kubectl  apply -f k8-deploy.yml'
