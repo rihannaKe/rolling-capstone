@@ -8,9 +8,10 @@ Launch AWS Ec2
 `sudo apt-get install -y jenkins `
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 
-install jenkins plugins
+install jenkins necessary plugins ex.
 - BlueOcean
 - Pipeline: AWS Steps
+- Kubernetes Continuous Deploy
 
 
 - Install Docker in EC2 instance.
