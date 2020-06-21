@@ -34,19 +34,33 @@ node {
         echo 'Pushed to docker hub'
     }
 
-    stage('Deploying') {
-        echo 'Deploying to AWS...'
+    stage('Update Image') {
+        echo 'Start Deploying to AWS 1 ...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh 'aws eks --region us-east-2 update-kubeconfig --name Kapstone'
             sh '/home/ubuntu/bin/kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
-           // sh '/home/ubuntu/bin/kubectl  set image deployments/capstone-app capstone-app=${REGISTRY}'
+        }
+    }
+
+    stage('Set image') {
+        echo 'Deploying to AWS 2...'
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            sh '/home/ubuntu/bin/kubectl set image deployments/capstone-app capstone-app=${REGISTRY}'
+        }
+    }
+
+    stage('Deploy  ') {
+        echo 'Deploying to AWS 3...'
+        withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh '/home/ubuntu/bin/kubectl  apply -f k8-deploy.yml'
+            sh '/home/ubuntu/bin/kubectl  rollout status deployment capstone-app'
             sh '/home/ubuntu/bin/kubectl  get nodes'
             sh '/home/ubuntu/bin/kubectl  get deployment'
             sh '/home/ubuntu/bin/kubectl  get pod -o wide'
             sh '/home/ubuntu/bin/kubectl  get service/capstone-app'
         }
     }
+
 
     stage('Cleaning up') {
         echo 'Cleaning up...'
