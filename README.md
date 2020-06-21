@@ -20,3 +20,4 @@ Here the depoloyed app is just a simple static html file
 
 ## the repo
 Here is the github repo : https://github.com/rihannaKe/rolling-capstone
+Temp. app url abf1d8ba060ae4fe280c2cc4ae2683fa-222617348.us-east-2.elb.amazonaws.com 
