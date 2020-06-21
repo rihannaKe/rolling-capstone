@@ -47,7 +47,6 @@ node {
     stage('Deploy check') {
         echo 'Deploying to check satus...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
-            sh '/home/ubuntu/bin/kubectl get deployment'
             sh '/home/ubuntu/bin/kubectl get nodes'
             sh '/home/ubuntu/bin/kubectl get pod -o wide'
             sh '/home/ubuntu/bin/kubectl get service/capstone-app'
