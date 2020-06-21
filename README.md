@@ -17,3 +17,6 @@ The choosen deployment strategy is the  K8 rolling update strategy as configured
 
 ## The app
 Here the depoloyed app is just a simple static html file 
+
+## the repo
+Here is the github repo : https://github.com/rihannaKe/rolling-capstone
