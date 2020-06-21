@@ -38,28 +38,27 @@ node {
         echo 'Deploying to config image update ...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
             sh 'aws eks --region us-east-2 update-kubeconfig --name Kapstone'
-            sh '˜/bin/kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
-            sh '˜/bin/kubectl apply -f k8-deploy.yml'
-            sh '˜/bin/kubectl set image deployments/capstone-app capstone-app=58910810/capstone_cloud_devops'
+            sh '/home/ubuntu/bin/kubectl config use-context arn:aws:eks:us-east-2:576136082284:cluster/Kapstone'
+            sh '/home/ubuntu/bin/kubectl apply -f k8-deploy.yml'
+            sh '/home/ubuntu/bin/kubectl set image deployments/capstone-app capstone-app=58910810/capstone_cloud_devops'
         }
     }
 
     stage('Deploy check') {
         echo 'Deploying to check satus...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
-            sh '˜/bin/kubectl get deployment'
-            sh '˜/bin/kubectl get nodes'
-            sh '˜/bin/kubectl get pod -o wide'
-            sh '˜/bin/kubectl get service/capstone-app'
-            sh '˜/bin/kubectl rollout status deployment capstone-app'
-            sh '˜/bin/kubectl get deployment'
+            sh '/home/ubuntu/bin/kubectl get deployment'
+            sh '/home/ubuntu/bin/kubectl get nodes'
+            sh '/home/ubuntu/bin/kubectl get pod -o wide'
+            sh '/home/ubuntu/bin/kubectl get service/capstone-app'
+            sh '/home/ubuntu/bin/kubectl rollout status deployment capstone-app'
         }
     }
 
     stage('Deploy see') {
         echo 'Deploying to check deployment...'
         withAWS(credentials: 'demo-eks-credentials', region: 'us-east-2') {
-            sh '˜/bin/kubectl get deployment'
+            sh '/home/ubuntu/bin/kubectl get deployment'
         }
     }
 
